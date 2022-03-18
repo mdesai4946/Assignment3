@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">  
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="/js/form.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/mainform.css">
+    <title>Tiny Cakes</title>
+</head>
+<body>
+  <header><img src="/images/logo.png">
+  <h1></h1>
+  </header>
+  <nav class="menu">
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/login">Login In</a></li>
+      <li><a href="/allorders">All Order</a></li>
+      <li><a href="/logout">Logout</a></li>
+    </ul>
+  </nav>
+  <h2> Update Your Order Here !!</h2>
+     <fieldset style="float: left; border-radius: 10px; margin-left: 200px;">
+     <section class="w50">
+        
+        <form name="basicform" method="Post" onsubmit="return formsubmit();"  action="" >
+                
+          <label>Customer Name : </label>
+          <input type="text" id="cname" placeholder="First & Last Name" name="cname" value="<%= order.cname %>"><br><br/>
+                
+          <label>Address: </label>
+          <input type="text" id="address" placeholder="Current Address" name="address" value="<%= order.address %>"><br><br/>
+               
+          <label> City: </label>
+          <input type="text" id="city" placeholder="City" name="city" value="<%= order.city %>"><br><br/>
+             
+          <label>Province : </label>
+          <select name = "province" id="province">
+          <option value="">---Select Province---</option>
+          <option <% if (order.province =="ontario"){%>selected<%}%> value="ontario">Ontario</option>
+          <option <% if (order.province =="novascotia"){%>selected<%}%> value="novascotia">Nova Scotia</option>
+          <option <% if (order.province =="manitoba"){%>selected<%}%> value="manitoba">Manitoba</option>
+          </select><br><br/>
+          
+          <label>Contact Number : </label>
+          <input type="phone" id="number" placeholder="1231231234" name="number" value="<%= order.number %>" ><br><br/>
+                
+          <label>Email ID : </label>
+          <input type="text" id="email" placeholder="abc@abcd.com" name="email" value="<%= order.email %>"><br><br/>
+                    
+    <label>Flavour Options :
+      <select name = "flavour" id="flavour">
+      <option value="">---Select flavours---</option>
+      <option <% if (order.value=="lemon"){%>selected<%}%> value="lemon">Lemon</option>
+      <option <% if (order.value=="pineapple"){%>selected<%}%> value="pineapple">Pineapple </option>
+      <option <% if (order.value=="cherry"){%>selected<%}%> value="cherry">Cherry </option>
+      <option <% if (order.value=="fudge"){%>selected<%}%> value="fudge">Fudge </option>
+      <option <% if(order.value=="cheese"){%>selected<%}%> value="cheesecake">Cheese Cake </option>
+      <option <% if(order.value=="mix"){%>selected<%}%> value="mixfruit">Mix Fruit </option>
+      </select><br><br/>
+
+      <label>Some Description</label>
+      <input type="text" id="description" name="description" value="<%= order.description %>"> <br><br>
+      
+      <h3>Upload image to customise it :</h3>
+      <label for="myImage">Image</label>
+      <input type="file" id="myImage" name="myImage" value="<order.myImage %>">
+      
+      <input type="submit" value="Update" >
+    <p id="errors">
+      <div class="formData">
+        <%
+        if (typeof(errors) != 'undefined')
+        {
+          for (let error of errors)
+          {
+      %>
+        <p class='errors'> <%= error.msg %> </p>
+      
+      <%
+          }
+        }
+      %> 
+  
+      </div>
+    </p>
+    </form>
+</section>
+</fieldset>
+</body>
+</html>
